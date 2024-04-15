@@ -23,13 +23,17 @@ values (3, '/0001/test', 'demo1.txt', 's:/mywork/source', '202207250916');
 </pre>
 
 ### 組裝執行指令
-#### 給來源路徑下載樹狀目錄，下載完成清除來源檔案
+#### 給來源路徑下載樹狀目錄
 <pre>
-S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log -DD -R server s:/mywork/source /0001/test
+S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log -R server s:/mywork/source /0001/test
 </pre>
-#### 給來源檔案下載檔案，下載完成清除來源檔案
+#### 給來源檔案下載所有檔案
 <pre>
-S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log -DD server s:/mywork/source /0001/test/*.*
+S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log server s:/mywork/source /0001/test/*.*
+</pre>
+#### 給來源檔案下載指定檔案
+<pre>
+S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log server s:/mywork/source /0001/test/TEST1.txt
 </pre>
 
 ### 屬性檔內容
