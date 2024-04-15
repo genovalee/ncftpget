@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
+import java.net.URLEncoder;
+
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 
@@ -28,7 +30,10 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -208,7 +213,7 @@ public class DoMainJob {
         if (isDirectory) {
             args = new String[] {
                 "i:/bin/ncftpget.exe", "-u", ftpUsername, "-p", ftpPassword, "-d", ftpLogDir + logfile + "_.log", "-R",
-                ftpHost, localPath, remotePath
+                ftpHost, localPath, remotePath + "/*.*"
             };
         } else {
             //下載指定檔案
@@ -246,7 +251,17 @@ public class DoMainJob {
     private static void executeProcess(String[] args) throws IOException, InterruptedException {
         LOGGER.info("Starting FTP download...");
         // 創建進程建構器
-        ProcessBuilder pb = new ProcessBuilder(args);
+        List<String> command = new ArrayList<>(Arrays.asList(args));
+
+        // 對含有中文的檔名進行編碼
+        for (int i = 0; i < command.size(); i++) {
+            String arg = command.get(i);
+            if (arg.matches(".*[\u4e00-\u9fa5]+.*")) { // 檢測是否包含中文字符
+                command.set(i, Paths.get(arg).toString()); // 使用 Paths.get() 構建檔案路徑
+            }
+        }
+
+        ProcessBuilder pb = new ProcessBuilder(command);
         // 啟動進程
         Process process = pb.start();
         // 等待命令執行完成
