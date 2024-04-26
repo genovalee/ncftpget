@@ -1,6 +1,6 @@
 ## 使用ncftpget從伺服器下載檔案至NT指定目錄
 ### 建立控制用table
-<pre>
+```sql
 create table FTPGETDEMO
 (
   sqno       NUMBER(4) not null,
@@ -9,9 +9,9 @@ create table FTPGETDEMO
   localpath  VARCHAR2(100),
   dttm       VARCHAR2(13)
 );
-</pre>
+```
 ### 範例資料
-<pre>
+```sql
 insert into ftpgetdemo (SQNO, REMOTEPATH, REMOTEFILE, LOCALPATH, DTTM)
 values (1, '/0001/test', '', 's:/mywork/source', '202207250916');
 
@@ -20,24 +20,20 @@ values (2, '/0001/test', '*.*', 's:/mywork/source', '202207250916');
 
 insert into ftpgetdemo (SQNO, REMOTEPATH, REMOTEFILE, LOCALPATH, DTTM)
 values (3, '/0001/test', 'demo1.txt', 's:/mywork/source', '202207250916');
-</pre>
+```
 
 ### 組裝執行指令
 #### 給來源路徑下載樹狀目錄
-<pre>
 S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log -R server s:/mywork/source /0001/test
-</pre>
+
 #### 給來源檔案下載所有檔案
-<pre>
 S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log server s:/mywork/source /0001/test/*.*
-</pre>
+
 #### 給來源檔案下載指定檔案
-<pre>
 S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log server s:/mywork/source /0001/test/TEST1.txt
-</pre>
 
 ### 屬性檔內容
-<pre>
+```properties
 # 資料庫連線設定
 db.alias=host
 db.username=schema
@@ -66,4 +62,4 @@ del.log.mk=Y
 
 #remote path 註記，預設為Y(Y:遠端指定目錄下載，N:遠端指定檔案下載(須給檔名或用*.*))
 use.remote.path=N
-</pre>
+```
