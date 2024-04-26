@@ -24,14 +24,17 @@ values (3, '/0001/test', 'demo1.txt', 's:/mywork/source', '202207250916');
 
 ### 組裝執行指令
 #### 給來源路徑下載樹狀目錄
+```txt
 S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log -R server s:/mywork/source /0001/test
-
+```
 #### 給來源檔案下載所有檔案
+```txt
 S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log server s:/mywork/source /0001/test/*.*
-
+```
 #### 給來源檔案下載指定檔案
+```txt
 S:\>ncftpget -u username -p password -d s:/mywork/log/20220725.log server s:/mywork/source /0001/test/TEST1.txt
-
+```
 ### 屬性檔內容
 ```properties
 # 資料庫連線設定
