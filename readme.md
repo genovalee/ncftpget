@@ -48,12 +48,12 @@ ftp.username = xxxxxx
 ftp.password = oooooo
 
 # for test------------------
-ftp.logdir = s:/mywork/log/
+ftp.logdir = s:\\mywork\\log\\
 
 # 備份檔案路徑設定
 move.mk=Y
-move.srcPath = S:/mywork/source/
-move.dstPath = S:/mywork/backup/
+move.srcPath = S:\\mywork\\source\\
+move.dstPath = S:\\mywork\\backup\\
 
 # 執行store procedure註記，預設為Y，設定為N表示不執行store procedure
 store.mk=Y
